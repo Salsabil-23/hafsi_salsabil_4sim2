@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('GIT') {
             steps {
-                git url: 'https://github.com/Malekmouelh/devops.git'
+                git url: 'https://github.com/Salsabil-23/hafsi_salsabil_4sim2.git'
             }
         }
 
