@@ -4,26 +4,27 @@ pipeline {
     stages {
         stage('GIT') {
             steps {
-                git url: 'https://github.com/Salsabil-23/hafsi_salsabil_4sim2.git'
+                git branch: 'main',
+                    url: 'https://github.com/Salsabil-23/hafsi_salsabil_4sim2.git'
             }
         }
 
         stage('Test Stage') {
             steps {
-                    sh'mvn test'
+                sh 'mvn test'
             }
         }
 
         stage('Package Stage') {
             steps {
-                sh 'mvn package '
+                sh 'mvn package'
             }
         }
     }
 
     post {
         success {
-            echo 'build and tests succeded'
+            echo 'build and tests succeeded'
         }
         failure {
             echo 'build failed'
