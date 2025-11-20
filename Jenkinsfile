@@ -1,56 +1,32 @@
 pipeline {
-
     agent any
 
-    tools {
-        jdk 'JAVA_HOME'
-        maven 'M2_HOME'
-    }
-
     stages {
-
         stage('GIT') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/Salsabil-23/StudentManagement.git'
+                git url: 'https://github.com/Malekmouelh/devops.git'
             }
         }
 
-        stage('Compile Stage') {
+        stage('Test Stage') {
             steps {
-                sh 'mvn clean compile'
-            }
-        }
-
-        stage('Unit Testing Stage') {
-            steps {
-                sh 'mvn test'
+                    sh'mvn test'
             }
         }
 
         stage('Package Stage') {
             steps {
-                sh 'mvn package'
+                sh 'mvn package '
             }
         }
-
-        stage('Deploy Stage') {
-            steps {
-                sh 'mvn deploy'
-            }
-        }
-
     }
 
     post {
-        always {
-            echo "=== Pipeline terminé ==="
-        }
         success {
-            echo "=== Pipeline exécuté avec succès ==="
+            echo 'build and tests succeded'
         }
         failure {
-            echo "=== Le pipeline a échoué ==="
+            echo 'build failed'
         }
     }
 }
